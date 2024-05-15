@@ -45,8 +45,6 @@
           // activate new navigation menu 'link-item'
           event.target.classList.add("active", "inner-shadow");
           event.target.classList.remove("outer-shadow", "hover-in-shadow");
-          // hode navigation menu
-          hideNavMenu();
         } else {
           let navItems = navMenu.querySelectorAll(".link-item");
           navItems.forEach((item) => {
@@ -58,6 +56,7 @@
           });
           fadeOutEffect();
         }
+        hideNavMenu();
         // add hash(#) to url
         window.location.hash = hash;
       }
