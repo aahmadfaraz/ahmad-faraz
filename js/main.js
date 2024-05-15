@@ -149,6 +149,8 @@ function bodyScrollingToggle() {
 
   /* Handle close button click */
   closeBtn.addEventListener("click", () => {
+    projectDetailsContainer.classList.remove("active");
+    projectDetailsContainer.style.maxHeight = 0;
     popupToggle();
   });
 
@@ -159,13 +161,13 @@ function bodyScrollingToggle() {
 
   /* Handle previous button click */
   prevBtn.addEventListener("click", () => {
-    slideIndex = (slideIndex === 0) ? screenshoots.length - 1 : slideIndex - 1;
+    slideIndex = slideIndex === 0 ? screenshoots.length - 1 : slideIndex - 1;
     popupSideshow();
   });
 
   /* Handle next button click */
   nextBtn.addEventListener("click", () => {
-    slideIndex = (slideIndex === screenshoots.length - 1) ? 0 : slideIndex + 1;
+    slideIndex = slideIndex === screenshoots.length - 1 ? 0 : slideIndex + 1;
     popupSideshow();
   });
 
@@ -202,21 +204,18 @@ function bodyScrollingToggle() {
     const title = portfolioItem.querySelector(".portfolio-item-title").textContent;
     const brief = portfolioItem.querySelector(".description p").textContent;
     const year = portfolioItem.querySelector(".info ul li:nth-child(1) span").textContent;
-    const client = portfolioItem.querySelector(".info ul li:nth-child(2) span").textContent;
-    const tools = portfolioItem.querySelector(".info ul li:nth-child(3) span").textContent;
+    const tools = portfolioItem.querySelector(".info ul li:nth-child(2) span").textContent;
 
     const titleElement = projectDetailsContainer.querySelector(".pp-title h2");
     const categoryElement = projectDetailsContainer.querySelector(".pp-title .pp-project-category");
     const briefElement = projectDetailsContainer.querySelector(".description p");
     const yearElement = projectDetailsContainer.querySelector(".info ul li:nth-child(1) span");
-    const clientElement = projectDetailsContainer.querySelector(".info ul li:nth-child(2) span");
-    const toolsElement = projectDetailsContainer.querySelector(".info ul li:nth-child(3) span");
+    const toolsElement = projectDetailsContainer.querySelector(".info ul li:nth-child(2) span");
 
     titleElement.textContent = title;
     categoryElement.textContent = portfolioItem.getAttribute("data-category");
     briefElement.textContent = brief;
     yearElement.textContent = year;
-    clientElement.textContent = client;
     toolsElement.textContent = tools;
   }
 })();
@@ -232,28 +231,46 @@ document.addEventListener("DOMContentLoaded", () => {
       title: "Paraiso",
       brief: "Transforming student dining with our click & collect app for savings and culinary discovery",
       year: "2023",
-      client: "---",
       tools: "flutter, firebase",
-      screenshots: ["img/portfolio/large/project-1/1.jpg", "img/portfolio/large/project-1/2.jpg", "img/portfolio/large/project-1/3.jpg"]
+      screenshots: ["img/portfolio/large/project-1/1.jpg", "img/portfolio/large/project-1/2.jpg", "img/portfolio/large/project-1/3.jpg"],
     },
     {
       category: "mobile-app",
       title: "Eduverse",
       brief: "Online Education Platform",
       year: "2023",
-      client: "---",
       tools: "flutter, firebase",
-      screenshots: ["img/portfolio/large/project-2/1.jpg", "img/portfolio/large/project-2/2.jpg", "img/portfolio/large/project-2/3.jpg"]
+      screenshots: [
+        "img/portfolio/large/project-2/1.jpg",
+        "img/portfolio/large/project-2/2.jpg",
+        "img/portfolio/large/project-2/3.jpg",
+        "img/portfolio/large/project-2/4.jpg",
+        "img/portfolio/large/project-2/5.jpg",
+        "img/portfolio/large/project-2/6.jpg",
+        "img/portfolio/large/project-2/7.jpg",
+        "img/portfolio/large/project-2/8.jpg",
+        "img/portfolio/large/project-2/9.jpg",
+        "img/portfolio/large/project-2/10.jpg",
+        "img/portfolio/large/project-2/11.jpg",
+        "img/portfolio/large/project-2/12.jpg",
+      ],
     },
     {
       category: "mobile-app",
       title: "Truedar",
       brief: "Born on the rich Emirati legacy, TrueDar simplifies your property search in UAE's dynamic landscape",
       year: "2024",
-      client: "---",
       tools: "flutter, firebase, node, express, next js, SERP, stripe etc.",
-      screenshots: ["img/portfolio/large/project-3/1.jpg", "img/portfolio/large/project-3/2.jpg", "img/portfolio/large/project-3/3.jpg"]
-    }
+      screenshots: [
+        "img/portfolio/large/project-3/1.jpg",
+        "img/portfolio/large/project-3/2.jpg",
+        "img/portfolio/large/project-3/3.jpg",
+        "img/portfolio/large/project-3/4.jpg",
+        "img/portfolio/large/project-3/5.jpg",
+        "img/portfolio/large/project-3/6.jpg",
+        "img/portfolio/large/project-3/7.jpg",
+      ],
+    },
   ];
 
   // Function to create portfolio item HTML
@@ -262,7 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="portfolio-item" data-category="${item.category}">
         <div class="portfolio-item-inner outer-shadow">
           <div class="portfolio-item-img">
-            <img src="${item.screenshots[0]}" alt="${item.title}" data-screenshots="${item.screenshots.join(',')}">
+            <img src="${item.screenshots[0]}" alt="${item.title}" data-screenshots="${item.screenshots.join(",")}">
             <span class="view-project">view project</span>
           </div>
           <p class="portfolio-item-title">${item.title}</p>
@@ -275,8 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="info">
                 <h3>project info:</h3>
                 <ul>
-                  <li>Data - <span>${item.year}</span></li>
-                  <li>Client - <span>${item.client}</span></li>
+                  <li>Date - <span>${item.year}</span></li>
                   <li>Tools - <span>${item.tools}</span></li>
                 </ul>
               </div>
