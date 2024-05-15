@@ -56,10 +56,11 @@
           });
           fadeOutEffect();
         }
-        hideNavMenu();
+
         // add hash(#) to url
         window.location.hash = hash;
       }
+      hideNavMenu();
     }
   });
 })();
